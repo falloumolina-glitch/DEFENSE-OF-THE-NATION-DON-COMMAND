@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Opération Frontière Verte</title>
+<style>
+  body { background:#0a2a12; color:#c8ffc8; font-family:sans-serif; padding:10px; }
+  h1 { text-align:center; color:#00ff00; }
+  .btn { background:#004d00; color:white; border:2px solid #00ff00; padding:15px; margin:5px; width:100%; font-size:18px; border-radius:8px; }
+  .btn-radio { background:#550000; border-color:red; }
+  #chrono { font-size:40px; text-align:center; margin:20px; }
+  .team { border:1px solid #00ff00; padding:10px; margin:10px 0; border-radius:8px; }
+</style>
+</head>
+<body>
+<h1>🌴 OPÉRATION FRONTIÈRE VERTE 🌴</h1>
+
+<div id="chrono">00:00</div>
+<button class="btn" onclick="startChrono()">LANCER MISSION</button>
+<button class="btn" onclick="stopChrono()">PAUSE</button>
+
+<h2>MISSIONS</h2>
+<button class="btn" onclick="setMission('POINT ALPHA')">MISSION 1: POINT ALPHA</button>
+<button class="btn" onclick="setMission('CONVOI')">MISSION 2: CONVOI</button>
+
+<h2>RADIO</h2>
+<button class="btn btn-radio" onclick="log('CONTACT ENNEMI !')">CONTACT !</button>
+<button class="btn btn-radio" onclick="log('BESOIN MÉDECIN')">MÉDECIN !</button>
+<button class="btn btn-radio" onclick="log('REN FORT DEMANDÉ')">RENFORT !</button>
+
+<h2>ÉQUIPES</h2>
+<div class="team">
+  <h3>ARMÉE BLEUE</h3>
+  Score: <span id="scoreB">0</span>
+  <button onclick="addScore('B')">+1 Objectif</button>
+</div>
+<div class="team">
+  <h3>ARMÉE ROUGE</h3>
+  Score: <span id="scoreR">0</span>
+  <button onclick="addScore('R')">+1 Objectif</button>
+</div>
+
+<h2>LOG DE MISSION</h2>
+<div id="log"></div>
+
+<script>
+let timer, sec=0, mission="Aucune";
+function startChrono(){ clearInterval(timer); timer=setInterval(()=>{sec++; document.getElementById('chrono').innerText = new Date(sec*1000).toISOString().substr(14,5);},1000); log("MISSION "+mission+" LANCÉE");}
+function stopChrono(){ clearInterval(timer); log("MISSION EN PAUSE");}
+function setMission(m){ mission=m; log("MISSION: "+m);}
+function addScore(t){ let s=document.getElementById('score'+t); s.innerText=parseInt(s.innerText)+1; log("POINT POUR ARMÉE "+t);}
+function log(txt){ document.getElementById('log').innerHTML = new Date().toLocaleTimeString()+" - "+txt+"<br>"+document.getElementById('log').innerHTML; }
+</script>
+</body>
+</html>
