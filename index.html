@@ -2,31 +2,48 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 <title>DEFENSE OF THE NATION COMMAND</title>
 <link rel="stylesheet" href="style.css">
+<meta name="screen-orientation" content="landscape">
 </head>
 <body>
-<h1>DEFENSE OF THE NATION COMMAND</h1>
+<div id="rotate-warning">TOURNEZ VOTRE TÉLÉPHONE EN MODE PAYSAGE</div>
 
-<div id="chrono">00:00</div>
-<button class="btn" onclick="startChrono()">LANCER MISSION</button>
-<button class="btn" onclick="stopChrono()">PAUSE</button>
+<header>
+  <h1>DEFENSE OF THE NATION COMMAND</h1>
+  <div id="chrono">00:00</div>
+</header>
 
-<h2>MISSIONS</h2>
-<button class="btn" onclick="setMission('POINT ALPHA')">MISSION 1: POINT ALPHA</button>
-<button class="btn" onclick="setMission('CONVOI')">MISSION 2: CONVOI</button>
+<main>
+  <section id="map">
+    <h2>CARTE TACTIQUE</h2>
+    <div id="map-grid">
+      <div class="zone" onclick="setMission('POINT ALPHA')">POINT A</div>
+      <div class="zone" onclick="setMission('CONVOI')">ROUTE CONVOI</div>
+      <div class="zone" onclick="setMission('EXTRACTION')">EXTRACTION</div>
+    </div>
+  </section>
 
-<h2>RADIO</h2>
-<button class="btn btn-radio" onclick="log('CONTACT ENNEMI !')">CONTACT !</button>
-<button class="btn btn-radio" onclick="log('BESOIN MÉDECIN')">MÉDECIN !</button>
+  <section id="control">
+    <h2>CONTROLES</h2>
+    <button class="btn btn-go" onclick="startChrono()">LANCER MISSION</button>
+    <button class="btn btn-stop" onclick="stopChrono()">PAUSE</button>
+    <button class="btn btn-radio" onclick="log('CONTACT ENNEMI !')">CONTACT !</button>
+    <button class="btn btn-radio" onclick="log('BESOIN MÉDECIN')">MEDEVAC</button>
+  </section>
 
-<h2>ÉQUIPES</h2>
-<div class="team"><h3>ARMÉE BLEUE</h3>Score: <span id="scoreB">0</span> <button onclick="addScore('B')">+1</button></div>
-<div class="team"><h3>ARMÉE ROUGE</h3>Score: <span id="scoreR">0</span> <button onclick="addScore('R')">+1</button></div>
+  <section id="teams">
+    <h2>FORCES</h2>
+    <div class="team team-blue"><h3>ARMÉE BLEUE</h3>Score: <span id="scoreB">0</span> <button onclick="addScore('B')">+1</button></div>
+    <div class="team team-red"><h3>ARMÉE ROUGE</h3>Score: <span id="scoreR">0</span> <button onclick="addScore('R')">+1</button></div>
+  </section>
+</main>
 
-<h2>LOG DE MISSION</h2>
-<div id="log"></div>
+<section id="log-box">
+  <h2>LOG RADIO</h2>
+  <div id="log"></div>
+</section>
 
 <script src="script.js"></script>
 </body>
